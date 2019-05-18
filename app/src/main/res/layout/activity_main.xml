@@ -7,22 +7,47 @@
         android:layout_height="match_parent"
         tools:context=".Activities.MainActivity" android:background="#272727">
 
+    <!--<SearchView-->
+            <!--android:id="@+id/searchBar"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="60dp"-->
+            <!--android:background="#545454"-->
+            <!--app:layout_constraintEnd_toEndOf="parent"-->
+            <!--app:layout_constraintStart_toStartOf="parent"-->
+            <!--app:layout_constraintTop_toTopOf="parent"-->
+            <!--android:elevation="8dp"-->
+            <!--android:queryBackground="@android:color/transparent"-->
+            <!--android:submitBackground="@android:color/transparent"-->
+    <!--&gt;-->
+
+    <!--</SearchView>-->
+
     <TextView
-            android:layout_width="128dp"
-            android:layout_height="33dp"
-            android:text="Saved Songs"
+            android:layout_width="136dp"
+            android:layout_height="50dp"
+            android:text="@string/my_tabs"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" app:layout_constraintVertical_bias="0.088"
-            android:id="@+id/Saved" android:textColor="#ffffff" android:textSize="30sp"
+            app:layout_constraintTop_toTopOf="parent" app:layout_constraintVertical_bias="0.078"
+            android:id="@+id/Saved" android:textColor="#FFFFFF" android:textSize="30sp"
             app:layout_constraintHorizontal_bias="0.498" android:textAlignment="center"/>
+
     <android.support.design.widget.BottomNavigationView
-            android:layout_width="415dp"
-            android:layout_height="62dp" tools:layout_editor_absoluteX="-2dp" android:layout_marginTop="8dp"
-            app:layout_constraintTop_toTopOf="parent" android:layout_marginBottom="8dp"
-            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintVertical_bias="1.0"
-            android:id="@+id/navigationBar" app:itemHorizontalTranslationEnabled="true"
-    />
+            android:id="@+id/bottom_navigation"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            app:menu="@menu/bottom_nav_menu"
+            android:background="@color/lightGray"
+            app:itemBackground="@color/lightGray"
+            app:itemIconTint="@android:color/white"
+            app:itemTextColor="@android:color/white"
+            android:elevation="24dp"
+            tools:layout_editor_absoluteX="-40dp" android:layout_marginTop="516dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"/>
+
 
 </android.support.constraint.ConstraintLayout>

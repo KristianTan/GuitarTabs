@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">GuitarTabs</string>
+    <string name="my_tabs"><u>My Tabs</u></string>
 </resources>
+

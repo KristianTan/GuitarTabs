@@ -1,6 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                                             android:layout_width="match_parent"
-                                             android:layout_height="match_parent">
+<android.support.constraint.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".Activities.MainActivity" android:background="#272727">
+
+    <SearchView
+    android:id="@+id/searchBar"
+    android:layout_width="0dp"
+    android:layout_height="60dp"
+    android:background="#545454"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    android:elevation="8dp"
+    android:queryBackground="@android:color/transparent"
+    android:submitBackground="@android:color/transparent"
+    >
+    </SearchView>
+
+    <android.support.design.widget.BottomNavigationView
+            android:id="@+id/bottom_navigation"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            app:menu="@menu/bottom_nav_menu"
+            android:background="@color/lightGray"
+            app:itemBackground="@color/lightGray"
+            app:itemIconTint="@android:color/white"
+            app:itemTextColor="@android:color/white"
+            android:elevation="24dp"
+            tools:layout_editor_absoluteX="-40dp" android:layout_marginTop="516dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"/>
+
 
 </android.support.constraint.ConstraintLayout>

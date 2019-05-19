@@ -5,9 +5,15 @@ import android.content.SharedPreferences
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
+import android.support.v7.widget.LinearLayoutManager
 import android.view.Window
 import android.view.WindowManager
+import android.widget.TextView
+import com.caloriecounter.guitartabs.Adapters.SongAdapter
+import com.caloriecounter.guitartabs.Models.Song
 import com.caloriecounter.guitartabs.R
+import com.google.gson.Gson
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
     private var PRIVATE_MODE = 0
@@ -28,7 +34,6 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val sharedPref: SharedPreferences = getSharedPreferences(PREF_NAME, PRIVATE_MODE)
-
         requestWindowFeature(Window.FEATURE_NO_TITLE)
 
         window.setFlags(
@@ -40,6 +45,25 @@ class MainActivity : AppCompatActivity() {
 
         val bottomNavigation: BottomNavigationView = findViewById(R.id.bottom_navigation)
         bottomNavigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
+
+        val sharedPreferenceIds = sharedPref.all.map { it.key }
+
+
+        val saved: ArrayList<Song> = ArrayList()
+
+        for(s : String in sharedPreferenceIds) {
+            val gson = Gson()
+            val song = gson.fromJson(sharedPref.getString(s, ""), Song::class.java)
+
+            saved.add(song)
+        }
+
+
+        rv_savedSongs.layoutManager = LinearLayoutManager(this)
+
+        rv_savedSongs.adapter = SongAdapter(saved, this)
+
+
     }
 
 }

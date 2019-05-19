@@ -14,11 +14,12 @@ import android.widget.Toast
 import com.caloriecounter.guitartabs.Models.Song
 import com.caloriecounter.guitartabs.R
 import com.caloriecounter.guitartabs.Requests.SongRequest
+import com.google.gson.Gson
 
 class SearchActivity : AppCompatActivity() {
     private var PRIVATE_MODE = 0
     private val PREF_NAME = "savedSongs"
-    private var currentSong: Song = Song()
+//    private var currentSong: Song = Song()
 
 
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
@@ -51,6 +52,7 @@ class SearchActivity : AppCompatActivity() {
         val songRequest = SongRequest(this, findViewById(R.id.chords), findViewById(R.id.title))
 
         val search: SearchView = this.findViewById(R.id.searchBar)
+        search.isIconified = false
         search.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
 
             override fun onQueryTextChange(newText: String): Boolean {
@@ -66,10 +68,28 @@ class SearchActivity : AppCompatActivity() {
 
         val saveButton: Button = findViewById(R.id.saveButton)
         saveButton.setOnClickListener {
-            if (this.currentSong.getArtist() == null || this.currentSong.getArtist().isBlank()) {
+            if (songRequest.song.getTitle().isBlank()) {
                 Toast.makeText(this, "Search for song to save", Toast.LENGTH_LONG).show()
             } else {
                 val sharedPreferenceIds = sharedPref.all.map { it.key }
+                val currentSong = songRequest.song
+                val id = currentSong.getTitle() + currentSong.getArtist()
+
+                var alreadySaved = false
+
+                for(s : String in sharedPreferenceIds) {
+                    if(s == id) {
+                        alreadySaved = true
+                    }
+                }
+
+                if(!alreadySaved) {
+                    val gson = Gson()
+
+                    val editor = sharedPref.edit()
+                    editor.putString(id, gson.toJson(id))
+                    editor.apply()
+                }
             }
         }
     }

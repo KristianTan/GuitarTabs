@@ -1,11 +1,6 @@
 package com.caloriecounter.guitartabs.Requests
 
-import android.app.Activity
 import android.content.Context
-import android.content.SharedPreferences
-import com.google.gson.Gson
-import com.google.gson.GsonBuilder
-import com.google.gson.reflect.TypeToken
 import android.widget.TextView
 import com.android.volley.Request
 import com.android.volley.Response
@@ -16,24 +11,24 @@ import com.beust.klaxon.Parser
 import com.caloriecounter.guitartabs.Models.Song
 import android.text.method.ScrollingMovementMethod
 import android.widget.Toast
-import com.caloriecounter.guitartabs.Activities.SearchActivity
-import kotlin.properties.Delegates
+import kotlin.properties.Delegates.observable
 
 
 class SongRequest(var context: Context, var chords: TextView, var title : TextView) {
-    var song: Song by Delegates.observable(Song()) { prop, old, new ->
+    var song: Song by observable(Song()) { _, _, new ->
         chords.movementMethod = ScrollingMovementMethod()
-        chords.setText(new.getChords())
-        title.setText(new.getTitle() + " - " + new.getArtist())
+        chords.text = new.getChords()
+        title.text = new.getTitle() + " - " + new.getArtist()
+
     }
 
     fun searchSong(query: String) {
-        val linkTrang = "http://api.guitarparty.com/v2/songs/?query=" + query
+        val url = "http://api.guitarparty.com/v2/songs/?query=$query"
 
         val queue = Volley.newRequestQueue(this.context)
 
         val stringRequest = object : StringRequest(
-            Request.Method.GET, linkTrang,
+            Request.Method.GET, url,
             Response.Listener<String> { response ->
                 if (response != "{\"objects\": [], \"objects_count\": 0}") {
                     val parser: Parser = Parser()
@@ -41,7 +36,7 @@ class SongRequest(var context: Context, var chords: TextView, var title : TextVi
                     val json: JsonObject = parser.parse(stringBuilder) as JsonObject
                     this.song = Song(json)
                 } else {
-                    Toast.makeText(context, "Could not find: " + query, Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, "Could not find: $query", Toast.LENGTH_SHORT).show()
                 }
             },
             Response.ErrorListener {

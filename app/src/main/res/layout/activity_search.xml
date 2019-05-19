@@ -38,12 +38,27 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"/>
     <TextView
-            android:layout_width="406dp"
-            android:layout_height="607dp"
-            tools:layout_editor_absoluteX="2dp" android:id="@+id/searchResponse" android:layout_marginTop="60dp"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="315dp"
+            android:layout_height="496dp"
+            android:textColor="@android:color/white"
+            android:scrollbars="vertical"
+            android:id="@+id/chords"
+            android:scrollbarThumbVertical="@android:color/white"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            android:layout_marginStart="8dp" app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
+            android:layout_marginTop="140dp" app:layout_constraintTop_toTopOf="@+id/searchBar"
+    />
+    <TextView
+            android:layout_width="318dp"
+            android:layout_height="50dp"
+            android:textColor="@android:color/white"
+            android:autoSizeTextType="uniform"
+            android:autoSizeMinTextSize="12sp"
+            android:autoSizeMaxTextSize="20sp"
+            android:autoSizeStepGranularity="2sp"
+            android:id="@+id/title" android:layout_marginTop="76dp"
+            app:layout_constraintTop_toTopOf="@+id/searchBar" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="48dp"/>
 
 
 </android.support.constraint.ConstraintLayout>

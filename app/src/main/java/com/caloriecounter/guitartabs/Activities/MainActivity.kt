@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
 import android.view.Window
 import android.view.WindowManager
+import com.caloriecounter.guitartabs.Models.Song
 import com.caloriecounter.guitartabs.R
 
 class MainActivity : AppCompatActivity() {

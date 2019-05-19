@@ -37,7 +37,7 @@ class SearchActivity : AppCompatActivity() {
         val bottomNavigation : BottomNavigationView = findViewById(R.id.bottom_navigation)
         bottomNavigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
 
-        val songRequest = SongRequest(this)
+        val songRequest = SongRequest(this, findViewById(R.id.chords), findViewById(R.id.title))
 
         val search : SearchView = this.findViewById(R.id.searchBar)
         search.setOnQueryTextListener(object : SearchView.OnQueryTextListener {

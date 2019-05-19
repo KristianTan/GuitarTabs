@@ -1,10 +1,14 @@
 package com.caloriecounter.guitartabs.Adapters
 
 import android.content.Context
+import android.content.Intent
+import android.support.v4.content.ContextCompat.startActivity
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
+import com.caloriecounter.guitartabs.Activities.MainActivity
 import com.caloriecounter.guitartabs.Models.Song
 import com.caloriecounter.guitartabs.R
 import kotlinx.android.synthetic.main.song_list_item.view.*
@@ -25,11 +29,13 @@ class SongAdapter(val items : ArrayList<Song>, val context: Context) : RecyclerV
         val display = "${song.getTitle()} - ${song.getArtist()}"
 
         holder?.tvListItem?.text = display
+        holder?.tvListItem.setOnClickListener {
 
+        }
     }
 
 }
 
 class ViewHolder (view: View) : RecyclerView.ViewHolder(view) {
-    val tvListItem = view.tv_list_item
+    val tvListItem: TextView = view.tv_list_item
 }

@@ -5,22 +5,7 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".Activities.MainActivity" android:background="#272727">
-
-    <!--<SearchView-->
-            <!--android:id="@+id/searchBar"-->
-            <!--android:layout_width="0dp"-->
-            <!--android:layout_height="60dp"-->
-            <!--android:background="#545454"-->
-            <!--app:layout_constraintEnd_toEndOf="parent"-->
-            <!--app:layout_constraintStart_toStartOf="parent"-->
-            <!--app:layout_constraintTop_toTopOf="parent"-->
-            <!--android:elevation="8dp"-->
-            <!--android:queryBackground="@android:color/transparent"-->
-            <!--android:submitBackground="@android:color/transparent"-->
-    <!--&gt;-->
-
-    <!--</SearchView>-->
+        tools:context=".Activities.MainActivity" android:background="@color/darkGray">
 
     <TextView
             android:layout_width="136dp"

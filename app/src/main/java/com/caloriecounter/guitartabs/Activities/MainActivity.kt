@@ -6,16 +6,7 @@ import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
 import android.view.Window
 import android.view.WindowManager
-import android.widget.SearchView
-import android.widget.TextView
-import com.android.volley.Request
-import com.android.volley.Response
-import com.android.volley.toolbox.StringRequest
-import com.android.volley.toolbox.Volley
 import com.caloriecounter.guitartabs.R
-import com.caloriecounter.guitartabs.Requests.AsyncAPICall
-import org.json.JSONArray
-import org.json.JSONObject
 
 class MainActivity : AppCompatActivity() {
 

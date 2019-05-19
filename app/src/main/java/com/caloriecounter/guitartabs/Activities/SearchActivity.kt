@@ -69,7 +69,7 @@ class SearchActivity : AppCompatActivity() {
         val saveButton: Button = findViewById(R.id.saveButton)
         saveButton.setOnClickListener {
             if (songRequest.song.getTitle().isBlank()) {
-                Toast.makeText(this, "Search for song to save", Toast.LENGTH_LONG).show()
+                Toast.makeText(this, "Search for song to save.", Toast.LENGTH_LONG).show()
             } else {
                 val sharedPreferenceIds = sharedPref.all.map { it.key }
                 val currentSong = songRequest.song
@@ -80,6 +80,7 @@ class SearchActivity : AppCompatActivity() {
                 for(s : String in sharedPreferenceIds) {
                     if(s == id) {
                         alreadySaved = true
+                        Toast.makeText(this, "Already saved this song.", Toast.LENGTH_LONG).show()
                     }
                 }
 
@@ -87,8 +88,11 @@ class SearchActivity : AppCompatActivity() {
                     val gson = Gson()
 
                     val editor = sharedPref.edit()
-                    editor.putString(id, gson.toJson(id))
+                    editor.putString(id, gson.toJson(currentSong))
                     editor.apply()
+
+                    Toast.makeText(this, "Saved.", Toast.LENGTH_SHORT).show()
+
                 }
             }
         }

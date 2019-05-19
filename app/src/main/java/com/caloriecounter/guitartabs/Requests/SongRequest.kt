@@ -36,7 +36,7 @@ class SongRequest(var context: Context, var chords: TextView, var title : TextVi
                     val json: JsonObject = parser.parse(stringBuilder) as JsonObject
                     this.song = Song(json)
                 } else {
-                    Toast.makeText(context, "Could not find: $query", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, "Could not find: $query.", Toast.LENGTH_SHORT).show()
                 }
             },
             Response.ErrorListener {

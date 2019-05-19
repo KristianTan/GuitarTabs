@@ -8,12 +8,14 @@ import android.support.design.widget.BottomNavigationView
 import android.support.v7.widget.LinearLayoutManager
 import android.view.Window
 import android.view.WindowManager
+import android.widget.Button
 import android.widget.TextView
 import com.caloriecounter.guitartabs.Adapters.SongAdapter
 import com.caloriecounter.guitartabs.Models.Song
 import com.caloriecounter.guitartabs.R
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_main.view.*
 
 class MainActivity : AppCompatActivity() {
     private var PRIVATE_MODE = 0
@@ -46,9 +48,13 @@ class MainActivity : AppCompatActivity() {
         val bottomNavigation: BottomNavigationView = findViewById(R.id.bottom_navigation)
         bottomNavigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
 
+
+        val clear : Button = findViewById(R.id.clear)
+        clear.setOnClickListener {
+            this.getSharedPreferences(PREF_NAME, 0).edit().clear().commit()
+        }
+
         val sharedPreferenceIds = sharedPref.all.map { it.key }
-
-
         val saved: ArrayList<Song> = ArrayList()
 
         for(s : String in sharedPreferenceIds) {

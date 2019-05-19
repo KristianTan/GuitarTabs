@@ -27,9 +27,9 @@ class SongAdapter(val items : ArrayList<Song>, val context: Context) : RecyclerV
         holder?.tvListItem?.text = display
 
     }
+
 }
 
 class ViewHolder (view: View) : RecyclerView.ViewHolder(view) {
-    // Holds the TextView that will add each animal to
     val tvListItem = view.tv_list_item
 }

@@ -7,7 +7,7 @@
     <TextView
             android:text="TextView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" tools:layout_editor_absoluteY="210dp"
+            android:layout_height="wrap_content" tools:layout_editor_absoluteY="135dp"
             android:textColor="@android:color/white"
-            tools:layout_editor_absoluteX="176dp" android:id="@+id/tv_list_item"/>
+            tools:layout_editor_absoluteX="0dp" android:id="@+id/tv_list_item"/>
 </android.support.constraint.ConstraintLayout>

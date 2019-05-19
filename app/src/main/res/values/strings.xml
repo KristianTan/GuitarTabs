@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">GuitarTabs</string>
-    <string name="my_tabs"><u>My Tabs</u></string>
+    <string name="my_songs"><u>My Songs</u></string>
+    <string name="save"><u>Save</u></string>
 </resources>
 

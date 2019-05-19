@@ -1,7 +1,11 @@
 package com.caloriecounter.guitartabs.Requests
 
+import android.app.Activity
 import android.content.Context
-import android.util.Log
+import android.content.SharedPreferences
+import com.google.gson.Gson
+import com.google.gson.GsonBuilder
+import com.google.gson.reflect.TypeToken
 import android.widget.TextView
 import com.android.volley.Request
 import com.android.volley.Response
@@ -12,6 +16,7 @@ import com.beust.klaxon.Parser
 import com.caloriecounter.guitartabs.Models.Song
 import android.text.method.ScrollingMovementMethod
 import android.widget.Toast
+import com.caloriecounter.guitartabs.Activities.SearchActivity
 import kotlin.properties.Delegates
 
 

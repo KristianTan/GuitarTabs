@@ -26,7 +26,6 @@ class Song {
     }
 
     constructor() {
-
     }
 
     fun getChords(): String {

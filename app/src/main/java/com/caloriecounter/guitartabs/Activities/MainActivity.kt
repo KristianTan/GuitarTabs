@@ -8,8 +8,14 @@ import android.view.Window
 import android.view.WindowManager
 import android.widget.SearchView
 import android.widget.TextView
+import com.android.volley.Request
+import com.android.volley.Response
+import com.android.volley.toolbox.StringRequest
+import com.android.volley.toolbox.Volley
 import com.caloriecounter.guitartabs.R
 import com.caloriecounter.guitartabs.Requests.AsyncAPICall
+import org.json.JSONArray
+import org.json.JSONObject
 
 class MainActivity : AppCompatActivity() {
 
@@ -32,14 +38,13 @@ class MainActivity : AppCompatActivity() {
 
         window.setFlags(
             WindowManager.LayoutParams.FLAG_FULLSCREEN,
-            WindowManager.LayoutParams.FLAG_FULLSCREEN)
+            WindowManager.LayoutParams.FLAG_FULLSCREEN
+        )
 
         setContentView(R.layout.activity_main)
 
-        val task = AsyncAPICall()
-        task.execute("wonderwall")
-
-        val bottomNavigation : BottomNavigationView = findViewById(R.id.bottom_navigation)
+        val bottomNavigation: BottomNavigationView = findViewById(R.id.bottom_navigation)
         bottomNavigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
     }
+
 }

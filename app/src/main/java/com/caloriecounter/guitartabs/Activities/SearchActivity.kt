@@ -15,6 +15,7 @@ import com.caloriecounter.guitartabs.Models.Song
 import com.caloriecounter.guitartabs.R
 import com.caloriecounter.guitartabs.Requests.SongRequest
 import com.google.gson.Gson
+import kotlinx.android.synthetic.main.activity_search.*
 
 class SearchActivity : AppCompatActivity() {
     private var PRIVATE_MODE = 0
@@ -61,21 +62,22 @@ class SearchActivity : AppCompatActivity() {
 
             override fun onQueryTextSubmit(query: String): Boolean {
                 songRequest.searchSong(query)
+                saveButton.visibility = View.VISIBLE
                 return false
             }
 
         })
 
         val saveButton: Button = findViewById(R.id.saveButton)
+        saveButton.visibility = View.GONE
         saveButton.setOnClickListener {
-            if (songRequest.song.getTitle().isBlank()) {
-                Toast.makeText(this, "Search for song to save.", Toast.LENGTH_LONG).show()
-            } else {
+            if (!songRequest.song.getTitle().isBlank()) {
                 val sharedPreferenceIds = sharedPref.all.map { it.key }
                 val currentSong = songRequest.song
                 val id = currentSong.getTitle() + currentSong.getArtist()
 
                 var alreadySaved = false
+                saveButton.visibility = View.GONE
 
                 for(s : String in sharedPreferenceIds) {
                     if(s == id) {

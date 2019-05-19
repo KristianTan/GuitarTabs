@@ -19,7 +19,6 @@ class SongRequest(var context: Context, var chords: TextView, var title : TextVi
         chords.movementMethod = ScrollingMovementMethod()
         chords.text = new.getChords()
         title.text = new.getTitle() + " - " + new.getArtist()
-
     }
 
     fun searchSong(query: String) {

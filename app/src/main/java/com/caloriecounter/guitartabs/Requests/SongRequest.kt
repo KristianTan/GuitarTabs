@@ -45,6 +45,7 @@ class SongRequest(var context: Context, var chords: TextView, var title: TextVie
                     if(results.size == 1) {
                         this.song = results[0]
                     } else {
+                        // TODO: Add all items to recyclerView instead of displaying first in textView
                         this.song = results[0]
                     }
 

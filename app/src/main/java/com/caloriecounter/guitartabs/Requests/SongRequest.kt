@@ -14,7 +14,7 @@ import android.widget.Toast
 import kotlin.properties.Delegates.observable
 
 
-class SongRequest(var context: Context, var chords: TextView, var title : TextView) {
+class SongRequest(var context: Context, var chords: TextView, var title: TextView) {
     var song: Song by observable(Song()) { _, _, new ->
         chords.movementMethod = ScrollingMovementMethod()
         chords.text = new.getChords()
@@ -33,7 +33,21 @@ class SongRequest(var context: Context, var chords: TextView, var title : TextVi
                     val parser: Parser = Parser()
                     val stringBuilder: StringBuilder = StringBuilder(response)
                     val json: JsonObject = parser.parse(stringBuilder) as JsonObject
-                    this.song = Song(json)
+
+                    val count = json.int("objects_count")
+                    val objs = json.array<JsonObject>("objects")
+
+                    var results =  ArrayList<Song>()
+                    for (i in 0 until count!!) {
+                        results.add(Song(objs?.get(i)))
+                    }
+
+                    if(results.size == 1) {
+                        this.song = results[0]
+                    } else {
+                        this.song = results[0]
+                    }
+
                 } else {
                     Toast.makeText(context, "Could not find: $query.", Toast.LENGTH_SHORT).show()
                 }

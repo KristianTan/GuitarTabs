@@ -1,6 +1,5 @@
 package com.caloriecounter.guitartabs.Models
 
-import com.beust.klaxon.JsonArray
 import com.beust.klaxon.JsonObject
 
 class Song {
@@ -9,20 +8,14 @@ class Song {
     private var artist : String = ""
     private var title : String = ""
 
-    constructor(json: JsonObject) {
-        val wrapped = json.array<JsonObject>("objects")
-        var data = wrapped?.get(0)
-
-        var artistArray = data?.array<JsonObject>("authors")
+    constructor(json: JsonObject?) {
+        var artistArray = json?.array<JsonObject>("authors")
         var artistList = artistArray?.get("name")
         this.artist = artistList?.get(0) as String
 
-        this.chords = data?.string("body").toString()
+        this.chords = json?.string("body").toString()
 
-        this.title = data?.string("title").toString()
-
-        println()
-
+        this.title = json?.string("title").toString()
     }
 
     constructor() {

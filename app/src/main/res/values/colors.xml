@@ -6,4 +6,6 @@
     <color name="lightGray">#545454</color>
     <color name="darkGray">#272727</color>
     <color name="midGray">#303030</color>
+    <color name="orange">#e08d18</color>
+    <color name="purple">#7f0096</color>
 </resources>

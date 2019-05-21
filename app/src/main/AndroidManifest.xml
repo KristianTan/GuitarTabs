@@ -19,7 +19,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".Activities.SearchActivity"></activity>
-        
+        <activity android:name=".Activities.SongSheetActivity"></activity>
+
     </application>
 
 </manifest>

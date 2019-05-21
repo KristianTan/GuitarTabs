@@ -24,6 +24,7 @@ class SongRequest(var context: Context, val adapter : SongAdapter) {
         val stringRequest = object : StringRequest(
             Request.Method.GET, url,
             Response.Listener<String> { response ->
+                adapter.items.clear()
                 if (response != "{\"objects\": [], \"objects_count\": 0}") {
                     val parser: Parser = Parser()
                     val stringBuilder: StringBuilder = StringBuilder(response)
@@ -43,7 +44,7 @@ class SongRequest(var context: Context, val adapter : SongAdapter) {
                     }
 
                 } else {
-                    Toast.makeText(context, "Could not find: $query.", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, "No results for: $query", Toast.LENGTH_SHORT).show()
                 }
             },
             Response.ErrorListener {

@@ -1,8 +1,7 @@
 <resources>
-    <string name="app_name">GuitarTabs</string>
+    <string name="app_name">My Songs</string>
     <string name="my_songs"><u>My Songs</u></string>
     <string name="save"><u>Save Song</u></string>
     <string name="unsave"><u>Unsave Song</u></string>
-
 </resources>
 

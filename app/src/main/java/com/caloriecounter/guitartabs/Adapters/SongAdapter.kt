@@ -30,7 +30,6 @@ class SongAdapter(val items: ArrayList<Song>, val context: Context) : RecyclerVi
         holder.tvTitle.text = song.title
 
         holder.container.setOnClickListener {
-            holder.container.setBackgroundColor(545454)
             val intent = Intent(context, SongSheetActivity::class.java)
             intent.putExtra("song", song)
             context.startActivity(intent)

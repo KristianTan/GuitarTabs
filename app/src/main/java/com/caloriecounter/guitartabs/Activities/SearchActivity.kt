@@ -5,16 +5,19 @@ import android.content.SharedPreferences
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import android.view.Window
 import android.view.WindowManager
 import android.widget.Button
 import android.widget.SearchView
 import android.widget.Toast
+import com.caloriecounter.guitartabs.Adapters.SongAdapter
 import com.caloriecounter.guitartabs.Models.Song
 import com.caloriecounter.guitartabs.R
 import com.caloriecounter.guitartabs.Requests.SongRequest
 import com.google.gson.Gson
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_search.*
 
 class SearchActivity : AppCompatActivity() {
@@ -50,7 +53,13 @@ class SearchActivity : AppCompatActivity() {
         bottomNavigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
 
         val sharedPref: SharedPreferences = getSharedPreferences(PREF_NAME, PRIVATE_MODE)
-        val songRequest = SongRequest(this, findViewById(R.id.chords), findViewById(R.id.title))
+
+
+        rv_search_results.layoutManager = LinearLayoutManager(this)
+
+        rv_search_results.adapter = SongAdapter(ArrayList<Song>(), this)
+
+        val songRequest = SongRequest(this, rv_search_results.adapter as SongAdapter)
 
         val search: SearchView = findViewById(R.id.searchBar)
         search.isIconified = false
@@ -62,42 +71,11 @@ class SearchActivity : AppCompatActivity() {
 
             override fun onQueryTextSubmit(query: String): Boolean {
                 songRequest.searchSong(query)
-                saveButton.visibility = View.VISIBLE
                 return false
             }
-
         })
 
-        val saveButton: Button = findViewById(R.id.saveButton)
-        saveButton.visibility = View.GONE
-        saveButton.setOnClickListener {
-            if (!songRequest.song.title.isBlank()) {
-                val sharedPreferenceIds = sharedPref.all.map { it.key }
-                val currentSong = songRequest.song
-                val id = currentSong.title + currentSong.artist
 
-                var alreadySaved = false
-                saveButton.visibility = View.GONE
-
-                for(s : String in sharedPreferenceIds) {
-                    if(s == id) {
-                        alreadySaved = true
-                        Toast.makeText(this, "Already saved this song.", Toast.LENGTH_LONG).show()
-                    }
-                }
-
-                if(!alreadySaved) {
-                    val gson = Gson()
-
-                    val editor = sharedPref.edit()
-                    editor.putString(id, gson.toJson(currentSong))
-                    editor.apply()
-
-                    Toast.makeText(this, "Saved.", Toast.LENGTH_SHORT).show()
-
-                }
-            }
-        }
     }
 
 }

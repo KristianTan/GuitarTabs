@@ -11,17 +11,12 @@ import com.beust.klaxon.Parser
 import com.caloriecounter.guitartabs.Models.Song
 import android.text.method.ScrollingMovementMethod
 import android.widget.Toast
+import com.caloriecounter.guitartabs.Adapters.SongAdapter
 import kotlin.properties.Delegates.observable
 
 
-class SongRequest(var context: Context, var chords: TextView, var title: TextView) {
-    var song: Song by observable(Song()) { _, _, new ->
-        chords.movementMethod = ScrollingMovementMethod()
-        chords.text = new.chords
-        title.text = new.title + " - " + new.artist
-    }
-
-    fun searchSong(query: String) {
+class SongRequest(var context: Context, val adapter : SongAdapter) {
+        fun searchSong(query: String) {
         val url = "http://api.guitarparty.com/v2/songs/?query=$query"
 
         val queue = Volley.newRequestQueue(this.context)
@@ -42,11 +37,9 @@ class SongRequest(var context: Context, var chords: TextView, var title: TextVie
                         results.add(Song(objs?.get(i)))
                     }
 
-                    if(results.size == 1) {
-                        this.song = results[0]
-                    } else {
-                        // TODO: Add all items to recyclerView instead of displaying first in textView
-                        this.song = results[0]
+                    for(song in results) {
+                        adapter.items.add(song)
+                        adapter.notifyDataSetChanged()
                     }
 
                 } else {

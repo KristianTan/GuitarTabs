@@ -11,7 +11,7 @@
     <item
             android:id="@+id/navigation_search"
             android:enabled="true"
-            android:icon="@drawable/loupe"
+            android:icon="@drawable/ic_search"
             android:title="Search"
             app:showAsAction="ifRoom" />
 </menu>

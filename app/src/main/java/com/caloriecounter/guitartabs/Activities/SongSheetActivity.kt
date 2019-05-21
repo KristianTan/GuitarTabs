@@ -5,8 +5,15 @@ import android.content.SharedPreferences
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
+import android.text.method.ScrollingMovementMethod
+import android.view.View
 import android.view.Window
+import android.widget.Button
+import android.widget.TextView
+import android.widget.Toast
+import com.caloriecounter.guitartabs.Models.Song
 import com.caloriecounter.guitartabs.R
+import com.google.gson.Gson
 
 class SongSheetActivity : AppCompatActivity() {
     private var PRIVATE_MODE = 0
@@ -39,5 +46,46 @@ class SongSheetActivity : AppCompatActivity() {
 
         val bottomNavigation: BottomNavigationView = findViewById(R.id.bottom_navigation)
         bottomNavigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
+
+        val currentSong = intent.extras.getParcelable<Song>("song")
+
+        val title: TextView = findViewById(R.id.songTitle)
+        title.text = currentSong.title + " - " + currentSong.artist
+
+        val chords: TextView = findViewById(R.id.songData)
+        chords.text = currentSong.chords
+        chords.movementMethod = ScrollingMovementMethod()
+
+        val saveButton: Button = findViewById(R.id.saveButton)
+
+        var alreadySaved = false
+        val sharedPreferenceIds = sharedPref.all.map { it.key }
+        val id = currentSong.title + currentSong.artist
+
+        for (s: String in sharedPreferenceIds) {
+            if (s == id) {
+                alreadySaved = true
+                saveButton.text = getString(R.string.unsave)
+            }
+        }
+
+        saveButton.setOnClickListener {
+            val gson = Gson()
+            val editor = sharedPref.edit()
+
+            if(alreadySaved) {
+                sharedPref.edit().remove(id).commit()
+                alreadySaved = false
+                saveButton.text = getString(R.string.save)
+                Toast.makeText(this, "${currentSong.title} has been unsaved.", Toast.LENGTH_SHORT).show()
+            } else {
+                editor.putString(id, gson.toJson(currentSong))
+                editor.apply()
+                saveButton.text = getString(R.string.unsave)
+                alreadySaved = true
+                Toast.makeText(this, "${currentSong.title} has been saved.", Toast.LENGTH_SHORT).show()
+            }
+
+        }
     }
 }

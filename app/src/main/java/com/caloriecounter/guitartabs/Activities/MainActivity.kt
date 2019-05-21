@@ -48,12 +48,6 @@ class MainActivity : AppCompatActivity() {
         val bottomNavigation: BottomNavigationView = findViewById(R.id.bottom_navigation)
         bottomNavigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
 
-
-        val clear : Button = findViewById(R.id.clear)
-        clear.setOnClickListener {
-            this.getSharedPreferences(PREF_NAME, 0).edit().clear().commit()
-        }
-
         val sharedPreferenceIds = sharedPref.all.map { it.key }
         val saved: ArrayList<Song> = ArrayList()
 

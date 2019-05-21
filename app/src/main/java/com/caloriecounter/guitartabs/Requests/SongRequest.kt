@@ -17,8 +17,8 @@ import kotlin.properties.Delegates.observable
 class SongRequest(var context: Context, var chords: TextView, var title: TextView) {
     var song: Song by observable(Song()) { _, _, new ->
         chords.movementMethod = ScrollingMovementMethod()
-        chords.text = new.getChords()
-        title.text = new.getTitle() + " - " + new.getArtist()
+        chords.text = new.chords
+        title.text = new.title + " - " + new.artist
     }
 
     fun searchSong(query: String) {

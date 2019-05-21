@@ -52,7 +52,7 @@ class SearchActivity : AppCompatActivity() {
         val sharedPref: SharedPreferences = getSharedPreferences(PREF_NAME, PRIVATE_MODE)
         val songRequest = SongRequest(this, findViewById(R.id.chords), findViewById(R.id.title))
 
-        val search: SearchView = this.findViewById(R.id.searchBar)
+        val search: SearchView = findViewById(R.id.searchBar)
         search.isIconified = false
         search.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
 
@@ -71,10 +71,10 @@ class SearchActivity : AppCompatActivity() {
         val saveButton: Button = findViewById(R.id.saveButton)
         saveButton.visibility = View.GONE
         saveButton.setOnClickListener {
-            if (!songRequest.song.getTitle().isBlank()) {
+            if (!songRequest.song.title.isBlank()) {
                 val sharedPreferenceIds = sharedPref.all.map { it.key }
                 val currentSong = songRequest.song
-                val id = currentSong.getTitle() + currentSong.getArtist()
+                val id = currentSong.title + currentSong.artist
 
                 var alreadySaved = false
                 saveButton.visibility = View.GONE

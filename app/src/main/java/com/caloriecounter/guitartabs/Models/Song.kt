@@ -11,10 +11,6 @@ data class Song (
      var title : String = ""
 ) : Parcelable{
 
-//    private var chords : String = ""
-//    private var artist : String = ""
-//    private var title : String = ""
-
     constructor(json: JsonObject?) : this() {
         var artistArray = json?.array<JsonObject>("authors")
         var artistList = artistArray?.get("name")
@@ -24,17 +20,5 @@ data class Song (
 
         this.title = json?.string("title").toString()
     }
-
-
-//    fun getChords(): String {
-//        return this.chords
-//    }
-//    fun getTitle(): String {
-//        return this.title
-//    }
-//    fun getArtist(): String {
-//        return this.artist
-//    }
-
 
 }
